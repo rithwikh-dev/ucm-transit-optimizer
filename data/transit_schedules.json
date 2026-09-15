@@ -1,0 +1,141 @@
+{
+    
+    "weekday-transit-lines": {
+        "G-Line": {
+            "stops": [
+                "R St. Village Apartments",
+                "El Redondo Dr.",
+                "Compass Pointe Apartments",
+                "Merced College The Bus Terminal",
+                "M St. & Bellevue Rd.",
+                "University Transit Center",
+                "Amtrak Station",
+                "K St. & 18th St. & 19th St.",
+                "UC Merced Downtown Campus Center",
+                "Merced Transpo"
+            ]
+            },
+        "Bobcat Express" : {
+            "stops" :[
+            "R St. Village Apartments",
+            "El Redondo Dr.",
+            "Compass Pointe Apartments",
+            "Merced College The Bus Terminal",
+            "M St. & Bellevue Rd.",
+            "University Transit Center",
+            "Wingstop / Promenade Center",
+            "Merced Mall / Target",
+            "Loughborough Dr.",
+            "Amtrak Station",
+            "K St. & 18th St. & 19th St.",
+            "Merced Transpo",
+            "Rite Aid / Walgreens",
+            "El Portal Plaza & G St."
+            ]
+        },
+
+        "C-1" : {
+            "stops":[
+                "Granville Apartments",
+                "G St. & W. Alexander Ave.",
+                "Rite Aid / Walgreens",
+                "El Portal Plaza & G St. (Northbound)",
+                "Mercy Hospital/Tri-College (Northbound)",
+                "M St. & Bellevue Rd.",
+                "University Transit Center",
+                "Mercy Hospital / Tri-College (Southbound)",
+                "El Portal Plaza & G St. (Southbound)",
+                "G St. & W. Alexander Ave."
+            ]
+        },
+
+        "C-2" : {
+            "stops" :[
+                "R St. Village Apartments",
+                "El Redondo Dr.",
+                "Compass Pointe Apartments",
+                "Buena Vista Dr.",
+                "Merced Mall / Target",
+                "M St. Village Apartments",
+                "Merced College The Bus Terminal",
+                "Cardella Rd. & M St. (Northbound)",
+                "M St. & Bellevue Rd.",
+                "University Transit Center",
+                "Foothill Dr.",
+                "Cardella Rd. & M St. (Southbound)"
+            ]
+        },
+        
+        "FastCat" : {
+            "stops":[
+                "University Surgery Center",
+                "Wingstop / Promenade Center",
+                "Yosemite Crossings Shopping Center",
+                "Mercy Hospital / Tri-College",
+                "Cardella Rd. & M St.",
+                "M St. & Bellevue Rd.",
+                "University Transit Center",
+                "Mercy Hospital/Tri-College",
+                "Yosemite & Cordova",
+                "Moraga Subdivision"
+            ]
+        },
+
+        "FastCat 2" : {
+            "stops" :[
+                "University Surgery Center",
+                "Wingstop / Promenade Center",
+                "Yosemite Crossings Shopping Center",
+                "Mercy Hospital / Tri-College",
+                "Cardella Rd. & M St.",
+                "M St. & Bellevue Rd.",
+                "University Transit Center",
+                "Mercy Hospital/Tri-College",
+                "Yosemite & Cordova"
+            ]
+        },
+
+        "Yosemite Express" : {
+            "stops":[
+                "Moraga Subdivision",
+                "University Transit Center",
+                "Foothill Dr.",
+                "Mercy Hospital / Tri-College",
+                "G St. South",
+                "University Surgery Center"
+            ]
+        }
+
+        },
+
+        "weekend-transit-lines": {
+            "E-1": {
+            "stops":[
+                "University Transit Center",
+                "G St. South",
+                "Amtrak Station",
+                "K St. & 18th St. & 19th St.",
+                "Loughborough Dr.",
+                "Meadows Ave. & Olivewood Dr.",
+                "Merced Mall / Target",
+                "Rite Aid / Walgreens",
+                "Yosemite Crossings Shopping Center"
+            ]
+        },
+
+        "E-2": {
+            "stops":[
+                "University Transit Center",
+                "Wingstop / Promenade Center",
+                "R St. Village Apartments",
+                "El Redondo Dr.",
+                "Compass Pointe Apartments",
+                "Merced Mall / Target",
+                "M St. Village Apartments",
+                "Ironstone Dr. & M St.",
+                "Yosemite & Cordova",
+                "Moraga Subdivision"
+            ]
+        }
+        }
+    }

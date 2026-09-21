@@ -5,14 +5,14 @@
             "stops": {
                 "R St. Village Apartments" :[390, 458, 541, 609, 677, 745, 828, 901, 969, 1052, 1120, 1188, 1271],
                 "El Redondo Dr." : [393, 461, 544, 612, 680, 748, 831, 904, 972, 1055, 1123, 1191, 1274],
-                "Compass Pointe Apartments": [],
-                "Merced College The Bus Terminal": [],
-                "M St. & Bellevue Rd.": [],
-                "University Transit Center": [],
-                "Amtrak Station": [],
-                "K St. & 18th St. & 19th St.": [],
-                "UC Merced Downtown Campus Center": [],
-                "Merced Transpo": []
+                "Compass Pointe Apartments": [395, 463, 546, 614, 682, 750, 833, 906, 974, 1057, 1125, 1193, 1276],
+                "Merced College The Bus Terminal": [400, 468, 551, 619, 687, 755, 838, 911, 979, 1062, 1130, 1198, 1281],
+                "M St. & Bellevue Rd.": [406, 474, 557, 625, 693, 761, 844, 917, 985, 1068, 1136, 1204, 1287],
+                "University Transit Center": [417, 500, 568, 636, 704, 787, 855, 928, 1011, 1079, 1147, 1230, 1298],
+                "Amtrak Station": [438, 521, 589, 657, 725, 808, 876, 949, 1032, 1100, 1168, 1251, 1319],
+                "K St. & 18th St. & 19th St.": [440, 523, 591, 659, 727, 810, 878, 951, 1034, 1102, 1170, 1253, 1321],
+                "UC Merced Downtown Campus Center": [442, 525, 593, 661, 729, 812, 880, 953, 1036, 1104, 1172, 1255, 1323],
+                "Merced Transpo": ["REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ"]
                 }
             },
         "Bobcat Express" : {

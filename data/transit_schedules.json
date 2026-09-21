@@ -4,7 +4,7 @@
         "G-Line": {
             "stops": {
                 "R St. Village Apartments" :[390, 458, 541, 609, 677, 745, 828, 901, 969, 1052, 1120, 1188, 1271],
-                "El Redondo Dr." : [],
+                "El Redondo Dr." : [393, 461, 544, 612, 680, 748, 831, 904, 972, 1055, 1123, 1191, 1274],
                 "Compass Pointe Apartments": [],
                 "Merced College The Bus Terminal": [],
                 "M St. & Bellevue Rd.": [],

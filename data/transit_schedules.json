@@ -50,20 +50,20 @@
         },
 
         "C-2" : {
-            "stops" :[
-                "R St. Village Apartments",
-                "El Redondo Dr.",
-                "Compass Pointe Apartments",
-                "Buena Vista Dr.",
-                "Merced Mall / Target",
-                "M St. Village Apartments",
-                "Merced College The Bus Terminal",
-                "Cardella Rd. & M St. (Northbound)",
-                "M St. & Bellevue Rd.",
-                "University Transit Center",
-                "Foothill Dr.",
-                "Cardella Rd. & M St. (Southbound)"
-            ]
+            "stops" :{
+                "R St. Village Apartments" : [380, 438, 511, 569, 642, 700, 773, 831, 892, 950, 1023, 1081, 1154, 1212, 1285, "REQ"],
+                "El Redondo Dr.": [383, 441, 514, 572, 645, 703, 776, 834, 895, 953, 1026, 1084, 1157, 1215, 1288, "REQ"],
+                "Compass Pointe Apartments": [385, 443, 516, 574, 647, 705, 778, 836, 897, 955, 1028, 1086, 1159, 1217, 1290, "REQ"],
+                "Buena Vista Dr.": [392, 450, 523, 581, 654, 712, 785, 843, 904, 962, 1035, 1093, 1166, 1224, 1297, "REQ"],
+                "Merced Mall / Target": [397, 457, 530, 588, 661, 719, 792, 850, 911, 969, 1042, 1100, 1173, 1231, 1304, "REQ"],
+                "M St. Village Apartments": [399, 459, 532, 590, 663, 721, 794, 852, 913, 971, 1044, 1102, 1175, 1233, 1306, "REQ"],
+                "Merced College The Bus Terminal": [403, 463, 536, 594, 667, 725, 798, 856, 917, 975, 1048, 1106, 1179, 1237, 1310, "REQ"],
+                "Cardella Rd. & M St. (Northbound)": [406, 466, 539, 597, 670, 728, 801, 859, 920, 978, 1051, 1109, 1182, 1240, 1313, "REQ"],
+                "M St. & Bellevue Rd." : [409, 469, 542, 600, 673, 731, 804, 862, 923, 981, 1054, 1112, 1185, 1243, 1316, "REQ"],
+                "University Transit Center" : [420, 495, 553, 626, 684, 757, 815, 873, 934, 1007, 1065, 1138, 1196, 1269, 1327],
+                "Foothill Dr.": [427, 502, 560, 633, 691, 764, 822, 880, 941, 1014, 1072, 1145, 1203, 1276, "REQ"],
+                "Cardella Rd. & M St. (Southbound)": [431, 506, 564, 637, 695, 769, 826, 884, 945, 1019, 1076, 1149, 1207, 1280, "REQ"]
+            }
         },
         
         "FastCat" : {

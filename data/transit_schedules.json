@@ -16,22 +16,22 @@
                 }
             },
         "Bobcat Express" : {
-            "stops" :[
-            "R St. Village Apartments",
-            "El Redondo Dr.",
-            "Compass Pointe Apartments",
-            "Merced College The Bus Terminal",
-            "M St. & Bellevue Rd.",
-            "University Transit Center",
-            "Wingstop / Promenade Center",
-            "Merced Mall / Target",
-            "Loughborough Dr.",
-            "Amtrak Station",
-            "K St. & 18th St. & 19th St.",
-            "Merced Transpo",
-            "Rite Aid / Walgreens",
-            "El Portal Plaza & G St."
-            ]
+            "stops" :{
+                "R St. Village Apartments": [389, 429, 469, 524, 564, 604, 644, 729, 829, 917, 1017, 1102, 1202],
+                "El Redondo Dr.": [392, 432, 472, 527, 567, 607, 647, 732, 832, 920, 1020, 1105, 1205],
+                "Compass Pointe Apartments" : [394, 434, 474, 529, 569, 609, 649, 734, 834, 922, 1022, 1107, 1207],
+                "Merced College The Bus Terminal" : [399, 439, 479, 534, 574, 614, 654, 739, 839, 927, 1027, 1112, 1212],
+                "M St. & Bellevue Rd." : [404, 444, 484, 539, 579, 619, 660, 745, 845, 933, 1033, 1118, 1218],
+                "University Transit Center" : [415, 455, 510, 539, 590, 630, 671, 771, 856, 959, 1044, 1144, "REQ"],
+                "Wingstop / Promenade Center" : [680, 780, 865, 968, 1053, 1153],
+                "Merced Mall / Target" : [689, 789, 877, 977, 1062, 1162],
+                "Loughborough Dr.": [698, 798, 886, 986, 1071, 1171],
+                "Amtrak Station": [710, 810, 898, 998, 1083, 1183, "REQ"],
+                "K St. & 18th St. & 19th St.": [712, 812, 900, 1000, 1085, 1185],
+                "Merced Transpo": ["REQ","REQ","REQ","REQ","REQ","REQ"],
+                "Rite Aid / Walgreens": [721, 821, 909, 1009, 1094, 1194],
+                "El Portal Plaza & G St." : [723, 823, 911, 1011, 1096, 1196]
+            }
         },
 
         "C-1" : {

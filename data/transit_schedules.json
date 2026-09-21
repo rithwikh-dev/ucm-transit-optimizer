@@ -2,18 +2,18 @@
     
     "weekday-transit-lines": {
         "G-Line": {
-            "stops": [
-                "R St. Village Apartments",
-                "El Redondo Dr.",
-                "Compass Pointe Apartments",
-                "Merced College The Bus Terminal",
-                "M St. & Bellevue Rd.",
-                "University Transit Center",
-                "Amtrak Station",
-                "K St. & 18th St. & 19th St.",
-                "UC Merced Downtown Campus Center",
-                "Merced Transpo"
-            ]
+            "stops": {
+                "R St. Village Apartments" :[390, 458, 541, 609, 677, 745, 828, 901, 969, 1052, 1120, 1188, 1271],
+                "El Redondo Dr." : [],
+                "Compass Pointe Apartments": [],
+                "Merced College The Bus Terminal": [],
+                "M St. & Bellevue Rd.": [],
+                "University Transit Center": [],
+                "Amtrak Station": [],
+                "K St. & 18th St. & 19th St.": [],
+                "UC Merced Downtown Campus Center": [],
+                "Merced Transpo": []
+                }
             },
         "Bobcat Express" : {
             "stops" :[
@@ -137,5 +137,5 @@
                 "Moraga Subdivision"
             ]
         }
-        }
     }
+}

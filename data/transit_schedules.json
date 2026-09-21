@@ -35,18 +35,18 @@
         },
 
         "C-1" : {
-            "stops":[
-                "Granville Apartments",
-                "G St. & W. Alexander Ave.",
-                "Rite Aid / Walgreens",
-                "El Portal Plaza & G St. (Northbound)",
-                "Mercy Hospital/Tri-College (Northbound)",
-                "M St. & Bellevue Rd.",
-                "University Transit Center",
-                "Mercy Hospital / Tri-College (Southbound)",
-                "El Portal Plaza & G St. (Southbound)",
-                "G St. & W. Alexander Ave."
-            ]
+            "stops":{
+                "Granville Apartments": [380, 451, 537, 608, 694, 765, 856, 927, 1013, 1084, 1155, 1241, 1312, "REQ"],
+                "G St. & W. Alexander Ave. (76 Gas Station)": [392, 463, 549, 620, 706, 777, 877, 938, 1025, 1096, 1167, 1253, 1324, "REQ"],
+                "Rite Aid / Walgreens": [394, 465, 551, 622, 708, 779, 879, 940, 1027, 1098, 1169, 1255, 1326, "REQ"],
+                "El Portal Plaza & G St. (Northbound)": [396, 467, 553, 624, 710, 781, 881, 942, 1029, 1100, 1171, 1257, 1328, "REQ"],
+                "Mercy Hospital/Tri-College (Northbound)": [399, 470, 556, 627, 713, 784, 884, 945, 1032, 1103, 1174, 1260, 1331, "REQ"],
+                "M St. & Bellevue Rd.": [405, 476, 562, 633, 719, 790, 890, 951, 1038, 1109, 1180, 1266, 1337, "REQ"],
+                "University Transit Center": [416, 502, 573, 659, 730, 816, 901, 977, 1049, 1120, 1206, 1277, 1348],
+                "Mercy Hospital / Tri-College (Southbound)": [426, 512, 583, 669, 740, 826, 911, 987, 1059, 1130, 1216, 1287,"REQ"],
+                "El Portal Plaza & G St. (Southbound)": [429, 515, 586, 672, 743, 829, 914, 990, 1062, 1133, 1219, 1290,"REQ"],
+                "G St. & W. Alexander Ave. (Paul's Place)" : [434, 520, 591, 677, 748, 834, 919, 995, 1067, 1138, 1224, 1295,"REQ"]
+            }
         },
 
         "C-2" : {

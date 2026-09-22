@@ -9,6 +9,16 @@
  * @returns {Object} - Details about the next bus or an error message
  */
 
-export function findBestStop(data, scheduleType) {
-    
+export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
+    const lines = data[scheduleType];
+
+    for(const[lineName, lineData] of Object.entries(lines)) {
+
+        const allStopsinLine = lineData.stops;
+
+        if (currentStop in allStopsinLine) {
+            const stopTimes = allStopsinLine[currentStop];
+        }
+        
+    }
 }

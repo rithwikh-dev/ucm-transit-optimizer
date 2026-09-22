@@ -11,6 +11,7 @@
 
 export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
     const lines = data[scheduleType];
+    let viableStops = [];
 
     for(const[lineName, lineData] of Object.entries(lines)) {
 
@@ -18,7 +19,16 @@ export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
 
         if (currentStop in allStopsinLine) {
             const stopTimes = allStopsinLine[currentStop];
+            
+        const nextTime = stopTimes.find(time => time !== "REQ" && time >= currentMinutes);
+    
+            if (nextTime !== undefined){
+            viableStops.push({
+                line: lineName,
+                time: nextTime
+                });
+            }
         }
-        
     }
+    return viableStops;
 }

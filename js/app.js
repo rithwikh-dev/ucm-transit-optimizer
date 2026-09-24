@@ -8,7 +8,7 @@ async function loadTransitData(){
         const response = await fetch("../data/transit_schedules.json");
         const data = await response.json();
         
-        const testResults = findBestStop(data, getScheduleKey(data), "R St. Village Apartments", 500);
+        const testResults = findBestStop(data, getScheduleKey(data), "University Transit Center", 412);
         console.log("Viable bus routes found: ", testResults);
 
     }

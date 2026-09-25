@@ -14,7 +14,26 @@ export function getCurrentMinutes() {
  * Weekday vs Weekend determines which transit lines are available,
  * so it's essential to gather the current day.
  */
+export function formatTime(minutes) {
+    let meridian = "";
+    if (minutes >= 720) {
+        meridian = "pm";
+    } else {
+        meridian = "am";
+    }
 
+    // Convert total minutes into standard 12-hour format hours and minutes
+    let rawHours = Math.floor(minutes / 60);
+    let hours = rawHours % 12;
+    if (hours === 0) hours = 12; // Handle 12:00 AM / 12:00 PM edge cases
+
+    let min = minutes % 60;
+    
+    // Pad minutes with a leading zero if they are single digits (e.g. 8:05 instead of 8:5)
+    let paddedMinutes = min < 10 ? "0" + min : min;
+
+    return `${hours}:${paddedMinutes}${meridian}`;
+}
 
 export function getScheduleKey() {
     const now = new Date();

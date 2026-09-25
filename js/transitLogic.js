@@ -1,5 +1,7 @@
 // js/transitLogic.js
 
+import { formatTime } from "./timeUtils.js";
+
 /*
  * @param {Object} data - Full transit Schedule json database.
  * @param {String} scheduleType - "weekday-transit-lines" or "weekend-transit-lines"
@@ -25,7 +27,7 @@ export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
             if (nextTime !== undefined){
             viableStops.push({
                 line: lineName,
-                time: nextTime
+                time: formatTime(nextTime)
                 });
             }
         }

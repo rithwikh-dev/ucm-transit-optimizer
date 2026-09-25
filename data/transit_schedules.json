@@ -67,75 +67,75 @@
         },
         
         "FastCat" : {
-            "stops":[
-                "University Surgery Center",
-                "Wingstop / Promenade Center",
-                "Yosemite Crossings Shopping Center",
-                "Mercy Hospital / Tri-College",
-                "Cardella Rd. & M St.",
-                "M St. & Bellevue Rd.",
-                "University Transit Center",
-                "Mercy Hospital/Tri-College",
-                "Yosemite & Cordova",
-                "Moraga Subdivision"
-            ]
+            "stops":{
+                "University Surgery Center" : [],
+                "Wingstop / Promenade Center": [],
+                "Yosemite Crossings Shopping Center": [],
+                "Mercy Hospital / Tri-College": [],
+                "Cardella Rd. & M St.": [],
+                "M St. & Bellevue Rd.": [],
+                "University Transit Center": [],
+                "Mercy Hospital/Tri-College": [],
+                "Yosemite & Cordova": [],
+                "Moraga Subdivision" : []
+            }
         },
 
         "FastCat 2" : {
-            "stops" :[
-                "University Surgery Center",
-                "Wingstop / Promenade Center",
-                "Yosemite Crossings Shopping Center",
-                "Mercy Hospital / Tri-College",
-                "Cardella Rd. & M St.",
-                "M St. & Bellevue Rd.",
-                "University Transit Center",
-                "Mercy Hospital/Tri-College",
-                "Yosemite & Cordova"
-            ]
+            "stops" :{
+                "University Surgery Center": [],
+                "Wingstop / Promenade Center": [],
+                "Yosemite Crossings Shopping Center": [],
+                "Mercy Hospital / Tri-College": [],
+                "Cardella Rd. & M St.": [],
+                "M St. & Bellevue Rd.": [],
+                "University Transit Center": [],
+                "Mercy Hospital/Tri-College": [],
+                "Yosemite & Cordova" : []
+            }
         },
 
         "Yosemite Express" : {
-            "stops":[
-                "Moraga Subdivision",
-                "University Transit Center",
-                "Foothill Dr.",
-                "Mercy Hospital / Tri-College",
-                "G St. South",
-                "University Surgery Center"
-            ]
+            "stops":{
+                "Moraga Subdivision": [],
+                "University Transit Center": [],
+                "Foothill Dr.": [],
+                "Mercy Hospital / Tri-College": [],
+                "G St. South": [],
+                "University Surgery Center": []
+            }
         }
 
         },
 
         "weekend-transit-lines": {
             "E-1": {
-            "stops":[
-                "University Transit Center",
-                "G St. South",
-                "Amtrak Station",
-                "K St. & 18th St. & 19th St.",
-                "Loughborough Dr.",
-                "Meadows Ave. & Olivewood Dr.",
-                "Merced Mall / Target",
-                "Rite Aid / Walgreens",
-                "Yosemite Crossings Shopping Center"
-            ]
+            "stops":{
+                "University Transit Center" : [],
+                "G St. South": [],
+                "Amtrak Station": [],
+                "K St. & 18th St. & 19th St.": [],
+                "Loughborough Dr.": [],
+                "Meadows Ave. & Olivewood Dr.": [],
+                "Merced Mall / Target": [],
+                "Rite Aid / Walgreens": [],
+                "Yosemite Crossings Shopping Center": []
+            }
         },
 
         "E-2": {
-            "stops":[
-                "University Transit Center",
-                "Wingstop / Promenade Center",
-                "R St. Village Apartments",
-                "El Redondo Dr.",
-                "Compass Pointe Apartments",
-                "Merced Mall / Target",
-                "M St. Village Apartments",
-                "Ironstone Dr. & M St.",
-                "Yosemite & Cordova",
-                "Moraga Subdivision"
-            ]
+            "stops":{
+                "University Transit Center": [],
+                "Wingstop / Promenade Center": [],
+                "R St. Village Apartments": [],
+                "El Redondo Dr.": [],
+                "Compass Pointe Apartments": [],
+                "Merced Mall / Target": [],
+                "M St. Village Apartments": [],
+                "Ironstone Dr. & M St.": [],
+                "Yosemite & Cordova": [],
+                "Moraga Subdivision": []
+            }
         }
     }
 }

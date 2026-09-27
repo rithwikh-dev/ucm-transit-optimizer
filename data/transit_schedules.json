@@ -99,11 +99,11 @@
 
         "Yosemite Express" : {
             "stops":{
-                "Moraga Subdivision": [],
-                "University Transit Center": [],
-                "Foothill Dr.": [],
-                "Mercy Hospital / Tri-College": [],
-                "G St. South": [],
+                "Moraga Subdivision": [540, 567, 594, 636, 663, 690, 717, 744, 771, 798, 840, 867, 894, 921],
+                "University Transit Center": [547, 574, 616, 643, 670, 697, 724, 751, 778, 820, 847, 874, 901, 943],
+                "Foothill Dr.": ["REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ", "REQ"],
+                "Mercy Hospital / Tri-College": [556, 583, 625, 652, 679, 706, 733, 760, 787, 829, 856, 883, 910, 952],
+                "G St. South": [559, 586, 628, 655, 682, 709, 736, 763, 790, 832, 859, 886, 913, 955],
                 "University Surgery Center": []
             }
         }

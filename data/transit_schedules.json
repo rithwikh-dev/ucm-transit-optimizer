@@ -127,16 +127,16 @@
 
         "E-2": {
             "stops":{
-                "University Transit Center": [],
-                "Wingstop / Promenade Center": [],
-                "R St. Village Apartments": [],
-                "El Redondo Dr.": [],
-                "Compass Pointe Apartments": [],
-                "Merced Mall / Target": [],
-                "M St. Village Apartments": [],
-                "Ironstone Dr. & M St.": [],
-                "Yosemite & Cordova": [],
-                "Moraga Subdivision": []
+                "University Transit Center": [665, 729, 778, 827, 876, 940, 989, 1038, 1105, 1154, 1218, 1267, 1316],
+                "Wingstop / Promenade Center": [674, 738, 787, 836, 885, 949, 998, 1047, 1114, 1163, 1227, 1276, "REQ"],
+                "R St. Village Apartments": [680, 744, 793, 842, 891, 955, 1004, 1056, 1120, 1169, 1233, 1282, "REQ"],
+                "El Redondo Dr.": [683, 747, 796, 845, 894, 958, 1007, 1059, 1123, 1172, 1236, 1285, "REQ"],
+                "Compass Pointe Apartments": [685, 749, 798, 847, 896, 960, 1009, 1061, 1125, 1174, 1238, 1287, "REQ"],
+                "Merced Mall / Target": [691, 755, 804, 853, 902, 966, 1015, 1067, 1131, 1180, 1244, 1293, "REQ"],
+                "M St. Village Apartments": [693, 757, 806, 855, 904, 968, 1017, 1069, 1133, 1182, 1246, 1295, "REQ"],
+                "Ironstone Dr. & M St.": [697, 761, 810, 859, 908, 972, 1021, 1073, 1137, 1186, 1250, 1299, "REQ"],
+                "Yosemite & Cordova": [703, 767, 816, 865, 914, 978, 1027, 1079, 1143, 1192, 1256, 1305, "REQ"],
+                "Moraga Subdivision": [706, 770, 819, 868, 917, 981, 1030, 1082, 1146, 1195, 1259, 1308, "REQ"]
             }
         }
     }

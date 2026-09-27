@@ -45,8 +45,3 @@ export function getScheduleKey() {
     }
     else return "weekday-transit-lines";
 }
-
-export function getFormattedTime() {
-    const now = new Date();
-    return now.toLocaleTimeString([], {hour : "2-digit", minute : "2-digit"});
-}

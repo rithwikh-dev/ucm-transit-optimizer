@@ -10,6 +10,7 @@ async function loadTransitData(){
         const data = await response.json();
         
         const testResults = findBestStop(data, getScheduleKey(data), "University Transit Center", getCurrentMinutes());
+
         if (testResults.length > 0){
             console.log("Viable bus routes found: ", testResults);
         }
@@ -27,3 +28,11 @@ async function loadTransitData(){
 }
 
 loadTransitData();
+
+const selectMenu = document.getElementById("stop-selector");
+
+selectMenu.addEventListener("change", function(event) {
+    let selectedStop = event.target.value;
+
+    console.log("The user just selected a new stop: ", selectedStop);
+});

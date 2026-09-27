@@ -84,15 +84,16 @@
 
         "FastCat 2" : {
             "stops" :{
-                "University Surgery Center": [],
-                "Wingstop / Promenade Center": [],
-                "Yosemite Crossings Shopping Center": [],
-                "Mercy Hospital / Tri-College": [],
-                "Cardella Rd. & M St.": [],
-                "M St. & Bellevue Rd.": [],
-                "University Transit Center": [],
-                "Mercy Hospital/Tri-College": [],
-                "Yosemite & Cordova" : []
+                "University Surgery Center": [510, 574, 653, 717, 781, 860, 924, 991, 1070, 1134, 1213, 1277],
+                "Wingstop / Promenade Center": [514, 578, 657, 721, 785, 864, 928, 995, 1074, 1138, 1217, 1281],
+                "Yosemite Crossings Shopping Center": [517, 581, 660, 724, 788, 867, 931, 998, 1077, 1141, 1220, 1284],
+                "Mercy Hospital / Tri-College": [519, 583, 662, 726, 790, 869, 933, 1000, 1079, 1143, 1222, 1286],
+                "Cardella Rd. & M St.": [523, 587, 666, 730, 794, 873, 937, 1004, 1083, 1147, 1226, 1290],
+                "M St. & Bellevue Rd.": [527, 591, 670, 734, 798, 877, 941, 1008, 1087, 1151, 1230, 1294],
+                "University Transit Center": [538, 617, 681, 745, 809, 888, 952, 1019, 1098, 1162, 1241, 1305],
+                "Mercy Hospital/Tri-College": [548, 627, 691, 755, 819, 898, 962, 1029, 1008, 1172, 1251, 1315],
+                "Yosemite & Cordova" : [551, 630, 694, 758, 822, 901, 965, 1032, 1011, 1175, 1254, "REQ"],
+                "Moraga Subdivision" : [557, 636, 700, 764, 828, 907, 971, 1038, 1017, 1181, 1260, "REQ"]
             }
         },
 

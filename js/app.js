@@ -4,18 +4,24 @@ import { findBestStop } from "./transitLogic.js";
 import { getScheduleKey } from "./timeUtils.js";
 import { getCurrentMinutes } from "./timeUtils.js";
 
-async function loadTransitData(){
+async function loadTransitData(currentStop){
     try{
         const response = await fetch("../data/transit_schedules.json");
         const data = await response.json();
         
-        const testResults = findBestStop(data, getScheduleKey(data), "University Transit Center", getCurrentMinutes());
-
+        const testResults = findBestStop(data, getScheduleKey(data), currentStop, getCurrentMinutes());
+        let viableStops = document.getElementById("bus-list");
         if (testResults.length > 0){
-            console.log("Viable bus routes found: ", testResults);
+            viableStops.innerHTML = "";
+            
+            testResults.forEach(route =>{
+
+                viableStops.innerHTML += `<li><span>${route.line}: </span><span>${route.time}</span></li>`;
+
+            });
         }
         else {
-            console.log("No bus routes found.");
+            viableStops.innerHTML = "<p>No Bus Lines running today.</p>"
         }
         
 
@@ -27,7 +33,10 @@ async function loadTransitData(){
 
 }
 
-loadTransitData();
+
+/**
+ * Event Listener for User selection of their current stop.
+ */
 
 const selectMenu = document.getElementById("stop-selector");
 
@@ -35,4 +44,6 @@ selectMenu.addEventListener("change", function(event) {
     let selectedStop = event.target.value;
 
     console.log("The user just selected a new stop: ", selectedStop);
+
+    loadTransitData(selectedStop);
 });

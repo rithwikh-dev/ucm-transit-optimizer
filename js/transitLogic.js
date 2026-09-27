@@ -34,3 +34,4 @@ export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
     }
     return viableStops;
 }
+

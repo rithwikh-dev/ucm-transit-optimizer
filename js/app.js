@@ -35,6 +35,10 @@ async function loadTransitData(currentStop){
 
 
 /**
+ * Loading University Transit Center Initially since that's the central hub for students!
+ */
+loadTransitData("University Transit Center");
+/**
  * Event Listener for User selection of their current stop.
  */
 

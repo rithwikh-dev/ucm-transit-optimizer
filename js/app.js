@@ -10,7 +10,13 @@ async function loadTransitData(){
         const data = await response.json();
         
         const testResults = findBestStop(data, getScheduleKey(data), "University Transit Center", getCurrentMinutes());
-        console.log("Viable bus routes found: ", testResults);
+        if (testResults.length > 0){
+            console.log("Viable bus routes found: ", testResults);
+        }
+        else {
+            console.log("No bus routes found.");
+        }
+        
 
     }
 

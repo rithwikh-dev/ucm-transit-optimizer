@@ -113,15 +113,15 @@
         "weekend-transit-lines": {
             "E-1": {
             "stops":{
-                "University Transit Center" : [],
-                "G St. South": [],
-                "Amtrak Station": [],
-                "K St. & 18th St. & 19th St.": [],
-                "Loughborough Dr.": [],
-                "Meadows Ave. & Olivewood Dr.": [],
-                "Merced Mall / Target": [],
-                "Rite Aid / Walgreens": [],
-                "Yosemite Crossings Shopping Center": []
+                "University Transit Center" : [510, 582, 639, 711, 768, 840, 897, 954, 1086, 1143, 1200, 1272, 1329, 1386],
+                "G St. South": [519, 591, 648, 720, 777, 849, 906, 963, 1095, 1152, 1209, 1281, 1338, "REQ"],
+                "Amtrak Station": [526, 598, 655, 727, 784, 856, 913, 970, 1102, 1159, 1216, 1288, 1345, "REQ"],
+                "K St. & 18th St. & 19th St.": [528, 600, 657, 729, 786, 858, 915, 972, 1104, 1161, 1218, 1290, 1347, "REQ"],
+                "Loughborough Dr.": [541, 613, 670, 742, 799, 871, 928, 985, 1117, 1174, 1231, 1303, 1360, "REQ"],
+                "Meadows Ave. & Olivewood Dr.": [543, 615, 672, 744, 801, 873, 930, 987, 1119, 1176, 1233, 1305, 1362, "REQ"],
+                "Merced Mall / Target": [547, 619, 676, 748, 805, 877, 934, 991, 1123, 1180, 1237, 1309, 1366, "REQ"],
+                "Rite Aid / Walgreens": [554, 626, 683, 755, 812, 884, 941, 998, 1130, 1187, 1244, 1316, 1373, "REQ"],
+                "Yosemite Crossings Shopping Center": [558, 630, 687, 759, 816, 888, 945, 1002, 1134, 1191, 1248, 1320, 1377, "REQ"]
             }
         },
 

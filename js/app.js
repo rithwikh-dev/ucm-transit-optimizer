@@ -1,43 +1,83 @@
 // js/app.js
 
 import { findBestStop } from "./transitLogic.js";
-import { getScheduleKey } from "./timeUtils.js";
+import { formatTime, getScheduleKey } from "./timeUtils.js";
 import { getCurrentMinutes } from "./timeUtils.js";
 
-async function loadTransitData(currentStop){
-    try{
+let appData = null;
+
+async function initApp(){
+    try {
         const response = await fetch("../data/transit_schedules.json");
-        const data = await response.json();
-        
-        const testResults = findBestStop(data, getScheduleKey(data), currentStop, getCurrentMinutes());
+        appData = await response.json();
+
+/**
+ * Loading University Transit Center Initially since that's the central hub for student transit!
+ */
+        loadTransitData("University Transit Center");
+    }
+    catch(error){
+        console.error("Failed to load transit schedule data: ", error);
+    }
+}
+
+
+async function loadTransitData(currentStop){
+
+    try{
+        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, getCurrentMinutes());
         let viableStops = document.getElementById("bus-list");
+
         if (testResults.length > 0){
+
             viableStops.innerHTML = "";
-            
             testResults.forEach(route =>{
-
                 viableStops.innerHTML += `<li><span>${route.line}: </span><span>${route.time}</span></li>`;
-
             });
         }
         else {
             viableStops.innerHTML = "<p>No Bus Lines running today.</p>"
         }
-        
-
     }
-
     catch(error) {
         console.error("Couldn't load schedule data: ", error);
     }
-
 }
 
+function startLiveClock(){
+    const clockElement = document.getElementById("live-clock");
+    const selectMenu = document.getElementById("stop-selector");
 
-/**
- * Loading University Transit Center Initially since that's the central hub for students!
- */
-loadTransitData("University Transit Center");
+    function tick(){
+        const liveMinutes = getCurrentMinutes();
+
+        clockElement.textContent = formatTime(liveMinutes);
+    }
+
+    tick();
+    setInterval(tick, 10000);
+}
+
+async function updateDropdown(){
+    try{
+        let weekLines = getScheduleKey();
+
+        if (weekLines == "weekend-transit-lines"){
+
+        }
+        else{
+
+        }
+
+        
+    }
+    catch(error){
+        console.error("Couldn't load schedule data.", error);
+    }
+}
+
+initApp();
+
 /**
  * Event Listener for User selection of their current stop.
  */
@@ -51,3 +91,5 @@ selectMenu.addEventListener("change", function(event) {
 
     loadTransitData(selectedStop);
 });
+
+startLiveClock();

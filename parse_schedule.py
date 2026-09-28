@@ -14,4 +14,17 @@ for line in all_lines:
     line = line.strip()
 
     if (":") in line:
-        print(line)
+        tokens = line.split()
+
+        beginningOfTimes = -1
+
+        for index, value in enumerate(tokens):
+            if (":") in value:
+                beginningOfTimes = index
+                break
+
+        
+        stopTimes = " ".join(tokens[beginningOfTimes:])
+        stopName = " ".join(tokens[:beginningOfTimes])
+
+        print(f"{stopName}: {stopTimes}")

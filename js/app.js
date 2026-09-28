@@ -14,9 +14,11 @@ async function initApp(){
 /**
  * Loading University Transit Center Initially since that's the central hub for student transit!
  */
-        loadTransitData("University Transit Center");
+        
 
         updateDropdown();
+
+        loadTransitData("University Transit Center");
 
         startLiveClock();
 

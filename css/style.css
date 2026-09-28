@@ -25,6 +25,21 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+.clock-display {
+   background-color: aliceblue;
+   border-radius: 12px;
+   padding: 12px 16px;
+   align-items: center;
+   padding-left: 30%;
+   font-size: large;
+   font-weight: 200;
+   
+}
+
+#live-clock {
+    font-weight: 600;
+}
+
 #bus-list {
     list-style: none;
     padding: 0;

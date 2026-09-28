@@ -36,11 +36,22 @@ async function loadTransitData(currentStop){
         const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, getCurrentMinutes());
         let viableStops = document.getElementById("bus-list");
 
+        function calculateArrival(){
+            const liveMinutes = getCurrentMinutes();
+
+        }
+
         if (testResults.length > 0){
 
             viableStops.innerHTML = "";
             testResults.forEach(route =>{
-                viableStops.innerHTML += `<li><span>${route.line}: </span><span>${route.time}</span></li>`;
+                viableStops.innerHTML += `
+                <li>
+                <span class ="route-name">${route.line}: </span>
+                <span class = "route-arrival"> Arriving in minutes. </span>
+                <span class = "route-time">${route.time}</span>
+                </li>
+                `;
             });
         }
         else {

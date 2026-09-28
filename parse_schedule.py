@@ -1,6 +1,19 @@
 import pdfplumber
 
-with pdfplumber.open("c-1.pdf") as pdf:
+inputBusLine = input("Which busline would you like to parse, Cattracks (enter 'c'), or Merced City bus (enter 'm').\n").lower()
+userLine = ""
+
+if inputBusLine == 'c':
+    userLine = "cattracks"
+elif inputBusLine == 'm':
+    userLine = "mercedcitybus"
+else:
+    print("Sorry, you entered an invalid response.\n")
+
+inputBusLine = input("Enter the pdf busline name, exactly how it is on the file:\n").lower()
+
+
+with pdfplumber.open(f"transit_pdfs/{userLine}/{inputBusLine}.pdf") as pdf:
 
     page = pdf.pages[0]
 

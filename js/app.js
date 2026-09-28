@@ -15,6 +15,12 @@ async function initApp(){
  * Loading University Transit Center Initially since that's the central hub for student transit!
  */
         loadTransitData("University Transit Center");
+
+        updateDropdown();
+
+        startLiveClock();
+
+
     }
     catch(error){
         console.error("Failed to load transit schedule data: ", error);
@@ -52,6 +58,10 @@ function startLiveClock(){
         const liveMinutes = getCurrentMinutes();
 
         clockElement.textContent = formatTime(liveMinutes);
+
+        if (selectMenu && selectMenu.value){
+            loadTransitData(selectMenu.value);
+        }
     }
 
     tick();
@@ -60,14 +70,25 @@ function startLiveClock(){
 
 async function updateDropdown(){
     try{
-        let weekLines = getScheduleKey();
+        const weekLines = getScheduleKey();
 
-        if (weekLines == "weekend-transit-lines"){
+        const activeLines = appData[weekLines];
 
+        let uniqueStops = new Set();
+        for(const[lineName, lineData] of Object.entries(activeLines)){
+            
+            Object.keys(lineData.stops).forEach(stopName =>{
+                uniqueStops.add(stopName);
+            })
         }
-        else{
 
-        }
+        const dropDown = document.getElementById("stop-selector");
+        dropDown.innerHTML = "";
+
+        uniqueStops.forEach(stop =>{
+            dropDown.innerHTML += `<option value ="${stop}">${stop}</option>`;
+        });
+        
 
         
     }
@@ -91,5 +112,3 @@ selectMenu.addEventListener("change", function(event) {
 
     loadTransitData(selectedStop);
 });
-
-startLiveClock();

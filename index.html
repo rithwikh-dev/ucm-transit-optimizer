@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UC Merced Transit Planner</title>
+    <title>University of California: Merced Transit Planner</title>
 
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="app-container">
         
-    <h1>UC Merced Transit Planner</h1>
+    <h1>University of California: Merced Transit Planner</h1>
 
     <div class ="clock-display">
         Current Time: <span id ="live-clock">--:-- --</span>
@@ -18,13 +18,17 @@
 
 <!-- User input for current stop!-->
 
-    <div class = "input-group">
-        <label for="stop-selector">Select your Current Stop:</label>
+    <div class = "selector-group">
+        <label class = "selector-label" for="stop-selector">Which stop are you currently at?:</label>
         <select id="stop-selector">
-            <option value="University Transit Center">University Transit Center</option>
-            <option value="R St. Village Apartments">R St. Village Apartments</option>
-            <option value ="Amtrak Station">Amtrak Station</option>
-            <option value ="Merced College The Bus Terminal">Merced College: The Bus Terminal</option>
+        </select>
+    </div>
+
+<!--User input for destination stop-->  
+    
+    <div class = "selector-group">
+        <label class="selector-label" for="destination-selector">Which stop is your destination?:</label>
+        <select id="destination-selector">
         </select>
     </div>
 

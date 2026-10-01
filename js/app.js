@@ -18,7 +18,7 @@ async function initApp(){
 
         updateDropdown();
 
-        loadTransitData("University Transit Center");
+        loadTransitData("University Transit Center", "Amtrak Station");
 
         startLiveClock();
 
@@ -30,10 +30,10 @@ async function initApp(){
 }
 
 
-async function loadTransitData(currentStop){
+async function loadTransitData(currentStop, destinationStop){
 
     try{
-        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, getCurrentMinutes());
+        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, destinationStop, getCurrentMinutes());
         let viableStops = document.getElementById("bus-list");
 
         function calculateArrival(){
@@ -66,14 +66,15 @@ async function loadTransitData(currentStop){
 function startLiveClock(){
     const clockElement = document.getElementById("live-clock");
     const selectMenu = document.getElementById("stop-selector");
+    const destinationMenu = document.getElementById("destination-selector");
 
     function tick(){
         const liveMinutes = getCurrentMinutes();
 
         clockElement.textContent = formatTime(liveMinutes);
 
-        if (selectMenu && selectMenu.value){
-            loadTransitData(selectMenu.value);
+        if (selectMenu && selectMenu.value && destinationMenu && destinationMenu.value){
+            loadTransitData(selectMenu.value, destinationMenu.value);
         }
     }
 
@@ -96,10 +97,14 @@ async function updateDropdown(){
         }
 
         const dropDown = document.getElementById("stop-selector");
+        const destinationDropDown = document.getElementById("destination-selector");
+
         dropDown.innerHTML = "";
+        destinationDropDown.innerHTML = "";
 
         uniqueStops.forEach(stop =>{
             dropDown.innerHTML += `<option value ="${stop}">${stop}</option>`;
+            destinationDropDown.innerHTML += `<option value = "${stop}">${stop}</option>`;
         });
         
 
@@ -116,12 +121,17 @@ initApp();
  * Event Listener for User selection of their current stop.
  */
 
-const selectMenu = document.getElementById("stop-selector");
+const originMenu = document.getElementById("stop-selector");
+const destinationMenu = document.getElementById("destination-selector")
 
-selectMenu.addEventListener("change", function(event) {
-    let selectedStop = event.target.value;
+function handleRouteSelection(){
 
-    console.log("The user just selected a new stop: ", selectedStop);
+    const origin = originMenu.value;
+    const destination = destinationMenu.value;
 
-    loadTransitData(selectedStop);
-});
+    console.log(`Routing requested: From [${origin}] to [${destination}].`)
+    loadTransitData(origin, destination);
+}
+
+originMenu.addEventListener("change", handleRouteSelection);
+destinationMenu.addEventListener("change", handleRouteSelection);

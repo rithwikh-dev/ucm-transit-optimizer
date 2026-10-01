@@ -5,33 +5,42 @@ import { formatTime } from "./timeUtils.js";
 /*
  * @param {Object} data - Full transit Schedule json database.
  * @param {String} scheduleType - "weekday-transit-lines" or "weekend-transit-lines"
- * @param {String} lineName - e.g., "G-Line"
- * @param {String} stopName - e.g., "R St. Village Apartments"
+ * @param {String} currentStop - The starting point (Origin)
+ * @param {String} destinationStop - The target destination (A-to-B)
  * @param {Number} currentMinutes - time in minutes past midnight
- * @returns {Object} - Details about the next bus or an error message
+ * @returns {Array} - List of valid upcoming bus lines traveling in the correct direction
  */
-
-export function findBestStop(data, scheduleType, currentStop, currentMinutes) {
+export function findBestStop(data, scheduleType, currentStop, destinationStop, currentMinutes) {
     const lines = data[scheduleType];
     let viableStops = [];
 
-    for(const[lineName, lineData] of Object.entries(lines)) {
+    // Loop through every available bus line route in our database
+    for (const [lineName, lineData] of Object.entries(lines)) {
+        const allStops = lineData.stops;
 
-        const allStopsinLine = lineData.stops;
+        // Ensure BOTH the starting point and destination exist on this bus line
+        if (currentStop in allStops && destinationStop in allStops) {
+            const originTimes = allStops[currentStop];
+            const destTimes = allStops[destinationStop];
 
-        if (currentStop in allStopsinLine) {
-            const stopTimes = allStopsinLine[currentStop];
-            
-        const nextTime = stopTimes.find(time => time !== "REQ" && time >= currentMinutes);
-    
-            if (nextTime !== undefined){
-            viableStops.push({
-                line: lineName,
-                time: formatTime(nextTime)
-                });
+            // Find the index of the first trip where the bus hits the origin stop AFTER right now
+            const tripIndex = originTimes.findIndex(time => time !== "REQ" && time >= currentMinutes);
+
+            // If an upcoming trip exists
+            if (tripIndex !== -1) {
+                const originArrival = originTimes[tripIndex];
+                const destArrival = destTimes[tripIndex];
+
+                // Ensure the destination isn't "Request Only" (REQ) 
+                // AND ensure the destination time happens AFTER the origin time (this ensures the correct direction!)
+                if (destArrival !== "REQ" && destArrival > originArrival) {
+                    viableStops.push({
+                        line: lineName,
+                        time: formatTime(originArrival) // Format time for the user card
+                    });
+                }
             }
         }
     }
     return viableStops;
 }
-

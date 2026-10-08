@@ -46,13 +46,23 @@ async function loadTransitData(currentStop, destinationStop){
             viableStops.innerHTML = "";
             testResults.forEach(route =>{
                 viableStops.innerHTML += `
-                <li>
+                <li class = "clickable-route-item" data-line = "${route.line}" style = "cursor: pointer;">
                 <span class ="route-name">${route.line}: </span>
                 <span class = "route-arrival"> Arriving in minutes. </span>
                 <span class = "route-time">${route.time}</span>
                 </li>
                 `;
             });
+
+            viableStops.onitemclick = null;
+            viableStops.onclick = (event) => {
+                const clickedItem = event.target.closest('.clickable-route-item');
+                if (clickedItem){
+                    const lineName = clickedItem.getAttribute('data-line');
+                    handleRouteClick(lineName, currentStop, destinationStop);
+                }
+            }
+
         }
         else {
             viableStops.innerHTML = "<p>No Bus Lines running today.</p>"
@@ -61,6 +71,12 @@ async function loadTransitData(currentStop, destinationStop){
     catch(error) {
         console.error("Couldn't load schedule data: ", error);
     }
+}
+
+function handleRouteClick(lineName, origin, destination){
+    console.log(`User clicked on route: ${lineName}. Routing from ${origin} to ${destination}.`);
+
+    alert(`You selected ${lineName}.\n Destination: ${destination}`);
 }
 
 function startLiveClock(){

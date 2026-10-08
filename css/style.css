@@ -106,6 +106,25 @@ h2 {
     border-radius: 4px;
 }
 
+.clickable-route-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2 ease, transform 0.1s ease;
+    border: 1px solid transparent;
+}
+
+.clickable-route-item:hover {
+    background-color: #f0f4f8;
+    border-color: #d0e2ff;
+    transform: translateY(1px);
+}
+
+.clickable-route-item:active {
+    background-color: #e1ecf7;
+    transform: translateY();
+}
+
 select {
     width: 100%;
     padding: 14px 16px;

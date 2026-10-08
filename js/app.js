@@ -11,18 +11,32 @@ async function initApp(){
         const response = await fetch("../data/transit_schedules.json");
         appData = await response.json();
 
-/**
- * Loading University Transit Center Initially since that's the central hub for student transit!
- */
         
-
         updateDropdown();
 
-        loadTransitData("University Transit Center", "Amtrak Station");
+        const originMenu = document.getElementById("stop-selector");
+        const destinationMenu = document.getElementById("destination-selector");
+
+        if (originMenu && destinationMenu) {
+            
+            if (destinationMenu.options.length > 1) {
+                destinationMenu.selectedIndex = 1;
+            }
+
+            
+            const handleRouteSelection = () => {
+                console.log(`Routing requested: From [${originMenu.value}] to [${destinationMenu.value}].`);
+                loadTransitData(originMenu.value, destinationMenu.value);
+            };
+
+            originMenu.addEventListener("change", handleRouteSelection);
+            destinationMenu.addEventListener("change", handleRouteSelection);
+
+            
+            loadTransitData(originMenu.value, destinationMenu.value);
+        }
 
         startLiveClock();
-
-
     }
     catch(error){
         console.error("Failed to load transit schedule data: ", error);
@@ -31,20 +45,16 @@ async function initApp(){
 
 
 async function loadTransitData(currentStop, destinationStop){
-
     try{
         const currentMinutes = getCurrentMinutes();
-        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, destinationStop, currentMinutes);
+        const testResults = findBestStop(appData, getScheduleKey(), currentStop, destinationStop, currentMinutes);
         let viableStops = document.getElementById("bus-list");
 
-
         if (testResults.length > 0){
-
             viableStops.innerHTML = "";
             testResults.forEach(route =>{
                 const minutesLeft = route.rawMinutes - currentMinutes;
 
-                // updating arrival text based on how many minutes left
                 let arrivalText = "";
                 if (minutesLeft === 0){
                     arrivalText = "The bus has arrived!";
@@ -68,28 +78,24 @@ async function loadTransitData(currentStop, destinationStop){
                 }
 
                 viableStops.innerHTML += `
-                <li class = "clickable-route-item" data-line = "${route.line}" style = "cursor: pointer;">
-                <span class ="route-name">${route.line}: </span>
-                <span class = "route-arrival"> ${arrivalText} </span>
-                 <!--inject statusClass into the class list -->
-                <span class = "route-time ${statusClass}">${route.time}</span>
-                
+                <li class="clickable-route-item" data-line="${route.line}" style="cursor: pointer;">
+                    <span class="route-name">${route.line}: </span>
+                    <span class="route-arrival"> ${arrivalText} </span>
+                    <span class="route-time ${statusClass}">${route.time}</span>
                 </li>
                 `;
             });
 
-            viableStops.onitemclick = null;
             viableStops.onclick = (event) => {
                 const clickedItem = event.target.closest('.clickable-route-item');
                 if (clickedItem){
                     const lineName = clickedItem.getAttribute('data-line');
                     handleRouteClick(lineName, currentStop, destinationStop);
                 }
-            }
-
+            };
         }
         else {
-            viableStops.innerHTML = "<p>No Bus Lines running today.</p>"
+            viableStops.innerHTML = "<p>No Bus Lines running today.</p>";
         }
     }
     catch(error) {
@@ -99,7 +105,6 @@ async function loadTransitData(currentStop, destinationStop){
 
 function handleRouteClick(lineName, origin, destination){
     console.log(`User clicked on route: ${lineName}. Routing from ${origin} to ${destination}.`);
-
     alert(`You selected ${lineName}.\n Destination: ${destination}`);
 }
 
@@ -110,7 +115,6 @@ function startLiveClock(){
 
     function tick(){
         const liveMinutes = getCurrentMinutes();
-
         clockElement.textContent = formatTime(liveMinutes);
 
         if (selectMenu && selectMenu.value && destinationMenu && destinationMenu.value){
@@ -125,15 +129,13 @@ function startLiveClock(){
 async function updateDropdown(){
     try{
         const weekLines = getScheduleKey();
-
         const activeLines = appData[weekLines];
 
         let uniqueStops = new Set();
         for(const[lineName, lineData] of Object.entries(activeLines)){
-            
             Object.keys(lineData.stops).forEach(stopName =>{
                 uniqueStops.add(stopName);
-            })
+            });
         }
 
         const dropDown = document.getElementById("stop-selector");
@@ -143,35 +145,14 @@ async function updateDropdown(){
         destinationDropDown.innerHTML = "";
 
         uniqueStops.forEach(stop =>{
-            dropDown.innerHTML += `<option value ="${stop}">${stop}</option>`;
-            destinationDropDown.innerHTML += `<option value = "${stop}">${stop}</option>`;
+            dropDown.innerHTML += `<option value="${stop}">${stop}</option>`;
+            destinationDropDown.innerHTML += `<option value="${stop}">${stop}</option>`;
         });
-        
-
-        
     }
     catch(error){
         console.error("Couldn't load schedule data.", error);
     }
 }
 
+// Start the application
 initApp();
-
-/**
- * Event Listener for User selection of their current stop.
- */
-
-const originMenu = document.getElementById("stop-selector");
-const destinationMenu = document.getElementById("destination-selector")
-
-function handleRouteSelection(){
-
-    const origin = originMenu.value;
-    const destination = destinationMenu.value;
-
-    console.log(`Routing requested: From [${origin}] to [${destination}].`)
-    loadTransitData(origin, destination);
-}
-
-originMenu.addEventListener("change", handleRouteSelection);
-destinationMenu.addEventListener("change", handleRouteSelection);

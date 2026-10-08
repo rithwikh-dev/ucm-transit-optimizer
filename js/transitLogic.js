@@ -23,22 +23,25 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
             const originTimes = allStops[currentStop];
             const destTimes = allStops[destinationStop];
 
-            // Find the index of the first trip where the bus hits the origin stop AFTER right now
-            const tripIndex = originTimes.findIndex(time => time !== "REQ" && time >= currentMinutes);
+            for(let i = 0; i < originTimes.length; i++){
+                const originArrival = originTimes[i];
 
-            // If an upcoming trip exists
-            if (tripIndex !== -1) {
-                const originArrival = originTimes[tripIndex];
-                const destArrival = destTimes[tripIndex];
+                if(originArrival === "REQ" || originArrival < currentMinutes){
+                    continue;
+                }
 
-                // Ensure the destination isn't "Request Only" (REQ) 
-                // AND ensure the destination time happens AFTER the origin time (this ensures the correct direction!)
-                if (destArrival !== "REQ" && destArrival > originArrival) {
+                if( i >= destTimes.length){
+                    break;
+                }
+                 const destArrival = destTimes[i];
+                if( destArrival !== undefined && destArrival !== "REQ" && destArrival > originArrival){
                     viableStops.push({
                         line: lineName,
                         time: formatTime(originArrival),
                         rawMinutes: originArrival
                     });
+
+                    break;
                 }
             }
         }

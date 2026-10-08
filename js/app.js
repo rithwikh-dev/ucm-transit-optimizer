@@ -13,7 +13,6 @@ async function initApp(){
         const response = await fetch("../data/transit_schedules.json");
         appData = await response.json();
 
-        
         updateDropdown();
 
         originMenu = document.getElementById("stop-selector");
@@ -26,16 +25,11 @@ async function initApp(){
             }
 
             
-            const handleRouteSelection = () => {
-                console.log(`Routing requested: From [${originMenu.value}] to [${destinationMenu.value}].`);
-                loadTransitData(originMenu.value, destinationMenu.value);
-            };
-
             originMenu.addEventListener("change", handleRouteSelection);
             destinationMenu.addEventListener("change", handleRouteSelection);
 
             
-            loadTransitData(originMenu.value, destinationMenu.value);
+            handleRouteSelection();
         }
 
         startLiveClock();
@@ -153,6 +147,35 @@ async function updateDropdown(){
     }
     catch(error){
         console.error("Couldn't load schedule data.", error);
+    }
+}
+
+// 🌟 STEP 3: NEW INTERACTIVE FILTER FUNCTION
+function handleRouteSelection(){
+    if (originMenu && destinationMenu) {
+        const origin = originMenu.value;
+        const destination = destinationMenu.value;
+
+        // Loop through all destination menu choices
+        Array.from(destinationMenu.options).forEach(option => {
+            if (option.value === origin) {
+                option.disabled = true; // Gray out the option if it matches origin
+            } else {
+                option.disabled = false; // Keep it selectable if it doesn't match
+            }
+        });
+
+        // Safe Fallback Rule: If the user explicitly sets origin to the current destination,
+        // automatically push their destination down to the next clear un-disabled alternative option.
+        if (origin === destination) {
+            const alternativeOption = Array.from(destinationMenu.options).find(opt => !opt.disabled);
+            if (alternativeOption) {
+                destinationMenu.value = alternativeOption.value;
+            }
+        }
+
+        console.log(`Routing requested: From [${originMenu.value}] to [${destinationMenu.value}].`);
+        loadTransitData(originMenu.value, destinationMenu.value);
     }
 }
 

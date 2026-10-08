@@ -106,6 +106,22 @@ h2 {
     border-radius: 4px;
 }
 
+/* The status classes alter the colors of the arrival times*/
+.status-green {
+    color: #059669 !important;
+    background-color: #ecfdf5!important;
+}
+
+.status-yellow {
+    color:#919605!important;
+    background-color: #fdfcec!important;
+}
+
+.status-red {
+    color: #960505!important;
+    background-color: #fdecec!important;
+}
+
 .clickable-route-item {
     padding: 12px;
     margin-bottom: 8px;

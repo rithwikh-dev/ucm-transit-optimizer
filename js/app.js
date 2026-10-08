@@ -44,22 +44,36 @@ async function loadTransitData(currentStop, destinationStop){
             testResults.forEach(route =>{
                 const minutesLeft = route.rawMinutes - currentMinutes;
 
+                // updating arrival text based on how many minutes left
                 let arrivalText = "";
                 if (minutesLeft === 0){
                     arrivalText = "The bus has arrived!";
                 }
                 else if (minutesLeft === 1){
-                    arrivalText = "The bus will arrive in 1 minute!"
+                    arrivalText = "Arriving in 1 minute!"
                 }
                 else {
-                    arrivalText = `The bus is arriving in ${minutesLeft} minutes.`
+                    arrivalText = `Arriving in ${minutesLeft} minutes.`
+                }
+
+                let statusClass = "";
+                if (minutesLeft <= 5){
+                    statusClass = "status-red";
+                }
+                else if (minutesLeft <= 10 && minutesLeft > 5){
+                    statusClass = "status-yellow";
+                }
+                else {
+                    statusClass = "status-green";
                 }
 
                 viableStops.innerHTML += `
                 <li class = "clickable-route-item" data-line = "${route.line}" style = "cursor: pointer;">
                 <span class ="route-name">${route.line}: </span>
-                <span class = "route-arrival"> ${arrivalText}. </span>
-                <span class = "route-time">${route.time}</span>
+                <span class = "route-arrival"> ${arrivalText} </span>
+                 <!--inject statusClass into the class list -->
+                <span class = "route-time ${statusClass}">${route.time}</span>
+                
                 </li>
                 `;
             });

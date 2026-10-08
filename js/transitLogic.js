@@ -14,7 +14,6 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
     const lines = data[scheduleType];
     let viableStops = [];
 
-    // Loop through every available bus line route in our database
     for (const [lineName, lineData] of Object.entries(lines)) {
         const allStops = lineData.stops;
 
@@ -30,18 +29,27 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
                     continue;
                 }
 
-                if( i >= destTimes.length){
-                    break;
+                // Search the destination array for the first valid arrival AFTER the originArrival
+                let foundValidDest = false;
+                for(let j = 0; j < destTimes.length; j++) {
+                    const destArrival = destTimes[j];
+                    
+                    if(destArrival !== undefined && destArrival !== "REQ" && destArrival > originArrival) {
+                        foundValidDest = true;
+                        break;
+                    }
                 }
-                 const destArrival = destTimes[i];
-                if( destArrival !== undefined && destArrival !== "REQ" && destArrival > originArrival){
+
+                // If a valid destination time exists, this is a viable bus to board
+                if(foundValidDest){
                     viableStops.push({
                         line: lineName,
                         time: formatTime(originArrival),
                         rawMinutes: originArrival
                     });
 
-                    break;
+                    // Break out of the origin loop so we only recommend the next immediate bus
+                    break; 
                 }
             }
         }

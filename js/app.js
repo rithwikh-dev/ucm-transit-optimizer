@@ -5,6 +5,8 @@ import { formatTime, getScheduleKey } from "./timeUtils.js";
 import { getCurrentMinutes } from "./timeUtils.js";
 
 let appData = null;
+let originMenu = null;
+let destinationMenu = null;
 
 async function initApp(){
     try {
@@ -14,8 +16,8 @@ async function initApp(){
         
         updateDropdown();
 
-        const originMenu = document.getElementById("stop-selector");
-        const destinationMenu = document.getElementById("destination-selector");
+        originMenu = document.getElementById("stop-selector");
+        destinationMenu = document.getElementById("destination-selector");
 
         if (originMenu && destinationMenu) {
             

@@ -1,5 +1,3 @@
-// js/app.js
-
 import { findBestStop } from "./transitLogic.js";
 import { formatTime, getScheduleKey } from "./timeUtils.js";
 import { getCurrentMinutes } from "./timeUtils.js";
@@ -7,6 +5,9 @@ import { getCurrentMinutes } from "./timeUtils.js";
 let appData = null;
 let originMenu = null;
 let destinationMenu = null;
+
+let isSimulatorActive = false;
+let simulatedMinutes = 0;
 
 async function initApp(){
     try {
@@ -19,17 +20,33 @@ async function initApp(){
         destinationMenu = document.getElementById("destination-selector");
 
         if (originMenu && destinationMenu) {
-            
             if (destinationMenu.options.length > 1) {
                 destinationMenu.selectedIndex = 1;
             }
 
-            
             originMenu.addEventListener("change", handleRouteSelection);
             destinationMenu.addEventListener("change", handleRouteSelection);
 
-            
             handleRouteSelection();
+        }
+
+        const timeSlider = document.getElementById("time-slider");
+        const sliderText = document.getElementById("slider-time-text");
+        const resetBtn = document.getElementById("reset-time-btn");
+
+        if(timeSlider && sliderText && resetBtn){
+            timeSlider.addEventListener("input", (e) => {
+                isSimulatorActive = true;
+                simulatedMinutes = parseInt(e.target.value);
+                sliderText.textContent = formatTime(simulatedMinutes);
+                loadTransitData(originMenu.value, destinationMenu.value);
+            });
+
+            resetBtn.addEventListener("click", () => {
+                isSimulatorActive = false;
+                sliderText.textContent = "Live Clock";
+                loadTransitData(originMenu.value, destinationMenu.value);
+            });
         }
 
         startLiveClock();
@@ -39,10 +56,9 @@ async function initApp(){
     }
 }
 
-
 async function loadTransitData(currentStop, destinationStop){
     try{
-        const currentMinutes = getCurrentMinutes();
+        const currentMinutes = isSimulatorActive ? simulatedMinutes : getCurrentMinutes();
         const testResults = findBestStop(appData, getScheduleKey(), currentStop, destinationStop, currentMinutes);
         let viableStops = document.getElementById("bus-list");
 
@@ -113,7 +129,7 @@ function startLiveClock(){
         const liveMinutes = getCurrentMinutes();
         clockElement.textContent = formatTime(liveMinutes);
 
-        if (selectMenu && selectMenu.value && destinationMenu && destinationMenu.value){
+        if (!isSimulatorActive && selectMenu && selectMenu.value && destinationMenu && destinationMenu.value){
             loadTransitData(selectMenu.value, destinationMenu.value);
         }
     }
@@ -150,23 +166,19 @@ async function updateDropdown(){
     }
 }
 
-// 🌟 STEP 3: NEW INTERACTIVE FILTER FUNCTION
 function handleRouteSelection(){
     if (originMenu && destinationMenu) {
         const origin = originMenu.value;
         const destination = destinationMenu.value;
 
-        // Loop through all destination menu choices
         Array.from(destinationMenu.options).forEach(option => {
             if (option.value === origin) {
-                option.disabled = true; // Gray out the option if it matches origin
+                option.disabled = true;
             } else {
-                option.disabled = false; // Keep it selectable if it doesn't match
+                option.disabled = false;
             }
         });
 
-        // Safe Fallback Rule: If the user explicitly sets origin to the current destination,
-        // automatically push their destination down to the next clear un-disabled alternative option.
         if (origin === destination) {
             const alternativeOption = Array.from(destinationMenu.options).find(opt => !opt.disabled);
             if (alternativeOption) {
@@ -179,5 +191,4 @@ function handleRouteSelection(){
     }
 }
 
-// Start the application
 initApp();

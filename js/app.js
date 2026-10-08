@@ -33,22 +33,32 @@ async function initApp(){
 async function loadTransitData(currentStop, destinationStop){
 
     try{
-        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, destinationStop, getCurrentMinutes());
+        const currentMinutes = getCurrentMinutes();
+        const testResults = findBestStop(appData, getScheduleKey(appData), currentStop, destinationStop, currentMinutes);
         let viableStops = document.getElementById("bus-list");
 
-        function calculateArrival(){
-            const liveMinutes = getCurrentMinutes();
-
-        }
 
         if (testResults.length > 0){
 
             viableStops.innerHTML = "";
             testResults.forEach(route =>{
+                const minutesLeft = route.rawMinutes - currentMinutes;
+
+                let arrivalText = "";
+                if (minutesLeft === 0){
+                    arrivalText = "The bus has arrived!";
+                }
+                else if (minutesLeft === 1){
+                    arrivalText = "The bus will arrive in 1 minute!"
+                }
+                else {
+                    arrivalText = `The bus is arriving in ${minutesLeft} minutes.`
+                }
+
                 viableStops.innerHTML += `
                 <li class = "clickable-route-item" data-line = "${route.line}" style = "cursor: pointer;">
                 <span class ="route-name">${route.line}: </span>
-                <span class = "route-arrival"> Arriving in minutes. </span>
+                <span class = "route-arrival"> ${arrivalText}. </span>
                 <span class = "route-time">${route.time}</span>
                 </li>
                 `;

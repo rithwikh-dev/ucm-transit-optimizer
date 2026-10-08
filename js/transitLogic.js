@@ -36,7 +36,8 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
                 if (destArrival !== "REQ" && destArrival > originArrival) {
                     viableStops.push({
                         line: lineName,
-                        time: formatTime(originArrival) // Format time for the user card
+                        time: formatTime(originArrival),
+                        rawMinutes: originArrival
                     });
                 }
             }

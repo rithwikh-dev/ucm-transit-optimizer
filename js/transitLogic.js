@@ -31,11 +31,14 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
 
                 // Search the destination array for the first valid arrival AFTER the originArrival
                 let foundValidDest = false;
+                let finalDestinationMinutes = null;
+
                 for(let j = 0; j < destTimes.length; j++) {
                     const destArrival = destTimes[j];
                     
                     if(destArrival !== undefined && destArrival !== "REQ" && destArrival > originArrival) {
                         foundValidDest = true;
+                        finalDestinationMinutes = destArrival;
                         break;
                     }
                 }
@@ -45,7 +48,9 @@ export function findBestStop(data, scheduleType, currentStop, destinationStop, c
                     viableStops.push({
                         line: lineName,
                         time: formatTime(originArrival),
-                        rawMinutes: originArrival
+                        rawMinutes: originArrival,
+                        destTime: formatTime(finalDestinationMinutes),
+                        destMinutes: finalDestinationMinutes
                     });
 
                     // Break out of the origin loop so we only recommend the next immediate bus

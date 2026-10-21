@@ -67,15 +67,17 @@ async function loadTransitData(currentStop, destinationStop){
             testResults.forEach(route =>{
                 const minutesLeft = route.rawMinutes - currentMinutes;
 
+                const tripDuration = route.destMinutes - route.rawMinutes;
+
                 let arrivalText = "";
                 if (minutesLeft === 0){
-                    arrivalText = "The bus has arrived!";
+                    arrivalText = "The bus is departing!";
                 }
                 else if (minutesLeft === 1){
-                    arrivalText = "Arriving in 1 minute!"
+                    arrivalText = "Departing in 1 minute!"
                 }
                 else {
-                    arrivalText = `Arriving in ${minutesLeft} minutes.`
+                    arrivalText = `Departing in ${minutesLeft} minutes.`
                 }
 
                 let statusClass = "";
@@ -90,7 +92,12 @@ async function loadTransitData(currentStop, destinationStop){
                 }
 
                 viableStops.innerHTML += `
-                <li class="clickable-route-item" data-line="${route.line}" style="cursor: pointer;">
+                <li class="clickable-route-item" 
+                    data-line="${route.line}" 
+                    data-dest-time="${route.destTime}"
+                    data-duration="${tripDuration}"
+                    style="cursor: pointer;">
+
                     <span class="route-name">${route.line}: </span>
                     <span class="route-arrival"> ${arrivalText} </span>
                     <span class="route-time ${statusClass}">${route.time}</span>
@@ -102,7 +109,10 @@ async function loadTransitData(currentStop, destinationStop){
                 const clickedItem = event.target.closest('.clickable-route-item');
                 if (clickedItem){
                     const lineName = clickedItem.getAttribute('data-line');
-                    handleRouteClick(lineName, currentStop, destinationStop);
+                    const destTime = clickedItem.getAttribute('data-dest-time');
+                    const duration = clickedItem.getAttribute('data-duration');
+
+                    handleRouteClick(lineName, currentStop, destinationStop, destTime, duration);
                 }
             };
         }
@@ -115,9 +125,15 @@ async function loadTransitData(currentStop, destinationStop){
     }
 }
 
-function handleRouteClick(lineName, origin, destination){
+function handleRouteClick(lineName, origin, destination, destTime, duration){
     console.log(`User clicked on route: ${lineName}. Routing from ${origin} to ${destination}.`);
-    alert(`You selected ${lineName}.\n Destination: ${destination}`);
+    alert(
+        `SelectedRoute: ${lineName}\n\n` +
+        `Boarding at: ${origin}\n`+
+        `Destination: ${destination} ETA: ${destTime}\n\n`+
+        `Estimated Travel Time: ${duration} minutes.`
+    
+    );
 }
 
 function startLiveClock(){

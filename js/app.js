@@ -127,13 +127,24 @@ async function loadTransitData(currentStop, destinationStop){
 
 function handleRouteClick(lineName, origin, destination, destTime, duration){
     console.log(`User clicked on route: ${lineName}. Routing from ${origin} to ${destination}.`);
-    alert(
-        `SelectedRoute: ${lineName}\n\n` +
-        `Boarding at: ${origin}\n`+
-        `Destination: ${destination} ETA: ${destTime}\n\n`+
-        `Estimated Travel Time: ${duration} minutes.`
-    
-    );
+    document.getElementById("modal-title").textContent = lineName;
+    document.getElementById("modal-origin").textContent = origin;
+    document.getElementById("modal-dest").textContent = destination;
+    document.getElementById("modal-time").textContent = destTime;
+    document.getElementById("modal-duration").textContent = duration;
+
+    document.getElementById("route-modal").classList.remove("hidden");
+
+    document.getElementById("close-modal").addEventListener("click", () => {
+        document.getElementById("route-modal").classList.add("hidden");
+    });
+
+    document.getElementById("route-modal").addEventListener("click", (event) =>{
+        if (event.target.id === "route-modal"){
+            document.getElementById("route-modal").classList.add("hidden");
+        }
+    });
+
 }
 
 function startLiveClock(){

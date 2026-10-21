@@ -49,6 +49,34 @@
 
     </div>
 
+    <div id="route-modal" class ="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+                <h2 id="modal-title">Route Details</h2>
+                <div class="modal-body">
+                    <div class="modal-row">
+                        <span class="modal-icon"></span>
+                        <p><strong>Boarding at: </strong><span id="modal-origin"></span></p>
+                    </div>
+
+                    <div class = "modal-row">
+                        <span class="modal-icon"></span>
+                        <p><strong>Destination:</strong><br><span id="modal-dest"></span></p>
+                    </div>
+
+                    <div class="modal-row highlight-row">
+                        <span class="modal-icon">Arrival</span>
+                        <p><strong></strong><span id="modal-time"></span></p>
+                    </div>
+
+                    <div class = "modal-row">
+                        <span class = "modal-icon"></span>
+                        <p><strong>Travel Time in Minutes: </strong><span id="modal-duration"> </span></p>
+                    </div>
+                </div>
+        </div>
+
+    </div>
     <!-- links main JavaScript app as a module -->
     <script type="module" src="./js/app.js"></script>
     

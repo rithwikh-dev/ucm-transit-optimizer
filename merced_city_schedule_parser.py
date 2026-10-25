@@ -13,4 +13,10 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
         text[0][i] = (text[0][i].replace('\n', ' ').strip())
 
 
-    print(text[0])
+    for row in text[1:]:
+        if row[1] is None:
+            row[0]=row[0].replace(' PM', 'PM')
+            row = row[0].split()
+        
+        print(row)
+    

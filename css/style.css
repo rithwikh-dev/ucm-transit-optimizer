@@ -250,7 +250,7 @@ select {
     font-weight: bold;
     font-size: 0.95rem;
     color: #ffb000;
-    text-shadow: 0 0 5px rgba(255, 176, 0, 0.7);
+    text-shadow: 0 0 5px rgba(255, 176, 0, 1);
     letter-spacing: 2px;
     animation: marquee-scroll 18s linear infinite;
     will-change: transform;

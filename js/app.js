@@ -88,7 +88,7 @@ async function loadTransitData(currentStop, destinationStop){
                     }
 
                     else{
-                        arrivalText = `Departs in ${hour} hours and ${minutes} minutes.`
+                        arrivalText = `Departs in ${hour} hours ${minutes} minutes.`
                     }
                 }
 

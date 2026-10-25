@@ -11,7 +11,7 @@ let simulatedMinutes = 0;
 
 async function initApp(){
     try {
-        const response = await fetch("../data/transit_schedules.json");
+        const response = await fetch("./data/transit_schedules.json");
         appData = await response.json();
 
         updateDropdown();

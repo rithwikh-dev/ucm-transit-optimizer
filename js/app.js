@@ -88,7 +88,7 @@ async function loadTransitData(currentStop, destinationStop){
                     }
 
                     else{
-                        arrivalText = `Departing in ${hour} hours and ${minutes} minutes.`
+                        arrivalText = `Departs in ${hour} hours and ${minutes} minutes.`
                     }
                 }
 
@@ -146,16 +146,6 @@ function handleRouteClick(lineName, origin, destination, destTime, duration){
     document.getElementById("modal-duration").textContent = duration;
 
     document.getElementById("route-modal").classList.remove("hidden");
-
-    document.getElementById("close-modal").addEventListener("click", () => {
-        document.getElementById("route-modal").classList.add("hidden");
-    });
-
-    document.getElementById("route-modal").addEventListener("click", (event) =>{
-        if (event.target.id === "route-modal"){
-            document.getElementById("route-modal").classList.add("hidden");
-        }
-    });
 
 }
 
@@ -229,5 +219,15 @@ function handleRouteSelection(){
         loadTransitData(originMenu.value, destinationMenu.value);
     }
 }
+
+document.getElementById("close-modal").addEventListener("click", () => {
+    document.getElementById("route-modal").classList.add("hidden");
+});
+
+document.getElementById("route-modal").addEventListener("click", (event) =>{
+    if (event.target.id === "route-modal"){
+        document.getElementById("route-modal").classList.add("hidden");
+    }
+});
 
 initApp();

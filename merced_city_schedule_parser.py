@@ -14,9 +14,6 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
         if len(table) >3:
             tables.append(table)
 
-    for rows in tables:
-        print(f"{rows}\n")
-
 
     for current_header in tables:
 
@@ -27,7 +24,7 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
             current_header[0][i] = (current_header[0][i].replace('\n', ' ').strip())
 
         print(current_header[0])
-        print("\n")
+
 
         route_data = {
             "stops": []
@@ -39,3 +36,4 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
                 row = row[0].split()
 
             print(row)
+        print("\n")

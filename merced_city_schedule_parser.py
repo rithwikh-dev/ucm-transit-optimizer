@@ -15,21 +15,27 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
         if len(table) >3:
             tables.append(table)
         else:
+            # the titles that distinguish weekend vs weekday lines are always less than 30 characters which we can isolate
             if len(table[0][0]) < 30:
                 titles.append(table)
         
-
+    # table destinations will contain information about the time of the week and line name
     table_destinations = []
 
 
+    transit_line = "weekday-transit-lines"
     for line in titles:
-        if "monday"  in line[0]:
-            table_destinations.append(("weekday-transit-lines", line[0][0]))
+
+        title_text = line[0][0].lower()
+
+        if "weekend" in title_text:
+             transit_line = "weekend-transit-lines"
+             table_destinations.append((transit_line, line[0][0]))
         else:
-             table_destinations.append(("weekday-transit-lines", line[0][0]))
+            table_destinations.append((transit_line, line[0][0]))
 
+   
     print(table_destinations)
-
 """
     master_json = {
         "weekday-transit-lines": {},

@@ -77,7 +77,19 @@ async function loadTransitData(currentStop, destinationStop){
                     arrivalText = "Departing in 1 minute!"
                 }
                 else {
-                    arrivalText = `Departing in ${minutesLeft} minutes.`
+                    let hour = Math.floor(minutesLeft/60);
+                    let minutes = minutesLeft % 60;
+                    if (minutesLeft < 60){
+                        arrivalText = `Departing in ${minutesLeft} minutes.`
+                    }      
+
+                    else if (minutesLeft < 120){
+                        arrivalText = `Departing in 1 hour and ${minutes} minutes.`
+                    }
+
+                    else{
+                        arrivalText = `Departing in ${hour} hours and ${minutes} minutes.`
+                    }
                 }
 
                 let statusClass = "";

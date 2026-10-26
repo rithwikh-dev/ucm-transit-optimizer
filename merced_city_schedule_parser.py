@@ -78,7 +78,10 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
 
         # Instead of creating a new list, we'll modify in place for better memory efficiency
         for i in range(header_length):
-            table[0][i] = table[0][i].replace('\n', ' ').strip()
+            if table[0][i] is None:
+                table[0][i] = ""
+            else:
+                table[0][i] = table[0][i].replace('\n', ' ').strip()
 
         route_data = {
             "stops": {}
@@ -95,6 +98,10 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
 
             for col_index, time_string in enumerate(row):
                 current_header = table[0][col_index]
+
+                # Catch empty cells and skip them immediately
+                if time_string is None:
+                    continue
 
                 if ':' in time_string:
                     is_PM = "PM" in time_string

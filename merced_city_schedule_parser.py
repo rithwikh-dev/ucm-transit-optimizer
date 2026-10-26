@@ -13,7 +13,15 @@ else:
         "weekend-transit-lines": {}
     }
 
-with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
+file_to_parse = int(input("Enter 1-7 for bus lines m-1 through m-7 (e.g. 4 corresponds to m-4, 7 corresponds to m-7) or 8 for route-uc:\n"))
+if file_to_parse > 0 and file_to_parse < 8:
+    file_to_parse = "m-" + str(file_to_parse)
+elif file_to_parse == 8:
+    file_to_parse = "route-uc"
+else:
+    print("Invalid Input.")
+
+with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
     page = file.pages[0]
     text = page.extract_tables()
 

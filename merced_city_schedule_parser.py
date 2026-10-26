@@ -1,6 +1,17 @@
 import pdfplumber
+import json
+import os
 
+filename = "merced_city_transit_schedule.json"
 
+if os.path.exists(filename):
+    with open(filename, "r") as json_file:
+        master_json = json.load(json_file)
+else:
+    master_json = {
+        "weekday-transit-lines": {},
+        "weekend-transit-lines": {}
+    }
 
 with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
     page = file.pages[0]
@@ -35,14 +46,6 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
              transit_line = "weekend-transit-lines"
         
         table_destinations.append((transit_line, line[0][0]))
-
-   
-
-    master_json = {
-        "weekday-transit-lines": {},
-        "weekend-transit-lines": {}
-    }
-
 
 
     for index, table in enumerate(tables):
@@ -90,13 +93,12 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
 
             master_json[transit_category][transit_loop] = route_data
 
-    import json
 
-    with open("merced_city_transit_schedule.json", "w") as json_file:
+    with open(filename, "w") as json_file:
 
         json.dump(master_json, json_file, indent=4)
 
-    print("Data successfully saved to merced_city_transit_schedule.json")
+    print("Data successfully saved to " + filename)
 
 
 

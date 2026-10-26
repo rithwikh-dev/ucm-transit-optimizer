@@ -3,15 +3,22 @@ import json
 import os
 
 filename = "merced_city_transit_schedule.json"
+# 1. Set the default blank architecture first
+master_json = {
+    "weekday-transit-lines": {},
+    "weekend-transit-lines": {}
+}
 
+# 2. Check if the file exists
 if os.path.exists(filename):
-    with open(filename, "r") as json_file:
-        master_json = json.load(json_file)
-else:
-    master_json = {
-        "weekday-transit-lines": {},
-        "weekend-transit-lines": {}
-    }
+    try:
+        # Try to read it and overwrite the blank architecture
+        with open(filename, "r") as json_file:
+            master_json = json.load(json_file)
+    except json.JSONDecodeError:
+        # If the file is completely empty or corrupted, ignore the error 
+        # and just keep using the blank architecture we set in step 1
+        pass
 
 file_to_parse = int(input("Enter 1-7 for bus lines m-1 through m-7 (e.g. 4 corresponds to m-4, 7 corresponds to m-7) or 8 for route-uc:\n"))
 if file_to_parse > 0 and file_to_parse < 8:
@@ -52,8 +59,13 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
         # change state only if we encounter weekend
         if "weekend" in title_text:
              transit_line = "weekend-transit-lines"
-        
-        table_destinations.append((transit_line, line[0][0]))
+
+        if "northloop" in title_text:
+            title_text = file_to_parse.upper()+ ": North Loop"
+        elif "southloop" in title_text:
+            title_text = file_to_parse.upper() + ": South Loop"
+
+        table_destinations.append((transit_line, title_text))
 
 
     for index, table in enumerate(tables):
@@ -99,7 +111,7 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
                     raw_minutes = (hour * 60) + minutes
                     route_data["stops"][current_header].append(raw_minutes)
 
-            master_json[transit_category][transit_loop] = route_data
+        master_json[transit_category][transit_loop] = route_data
 
 
     with open(filename, "w") as json_file:

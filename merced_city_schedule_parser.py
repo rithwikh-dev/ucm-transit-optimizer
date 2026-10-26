@@ -1,6 +1,7 @@
 import pdfplumber
 import json
 import os
+import re
 
 filename = "merced_city_transit_schedule.json"
 # 1. Set the default blank architecture first
@@ -78,17 +79,43 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
 
         # Instead of creating a new list, we'll modify in place for better memory efficiency
         for i in range(header_length):
-            if table[0][i] is None:
-                table[0][i] = ""
+            header_text = table[0][i]
+
+            # 1. UNIVERSAL FALLBACK: Catch empty cells OR floating bus bay numbers (e.g., "1", "②")
+            if header_text is None or len(header_text.strip()) <= 2:
+                fallback = table[1][i]
+                # Ensure the fallback is text and not a bus time
+                if fallback is not None and ":" not in fallback:
+                    header_text = fallback
+
+            # 2. GENERALIZED CLEANING
+            if header_text is None:
+                header_text = ""
             else:
-                table[0][i] = table[0][i].replace('\n', ' ').strip()
+                header_text = header_text.replace('\n', ' ').strip()
+
+                # AUTOMATIC UN-SQUISHER: Adds space between lowercase and uppercase (ChavezPk -> Chavez Pk)
+                header_text = re.sub(r'([a-z])([A-Z])', r'\1 \2', header_text)
+                
+                # Fix missing spaces around common symbols
+                header_text = header_text.replace("&", " & ")
+                
+                # Global dictionary for common preposition typos (safe for all 8 PDFs)
+                header_text = header_text.replace("Streetat", "Street at").replace("Acrossfrom", "Across from")
+                
+                # Clean up any accidental double-spaces we just created
+                header_text = " ".join(header_text.split())
+
+            table[0][i] = header_text
 
         route_data = {
             "stops": {}
         }
 
+        # 3. Only create keys for valid headers (ignores empty ghost columns entirely)
         for header in table[0]:
-            route_data["stops"][header] = []
+            if header != "":
+                route_data["stops"][header] = []
         
 
         for row in table[1:]:
@@ -99,8 +126,8 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
             for col_index, time_string in enumerate(row):
                 current_header = table[0][col_index]
 
-                # Catch empty cells and skip them immediately
-                if time_string is None:
+                # ADD THIS: Instantly skip empty times OR ghost columns
+                if time_string is None or current_header == "":
                     continue
 
                 if ':' in time_string:

@@ -126,7 +126,7 @@ with pdfplumber.open(f"transit_pdfs/mercedcitybus/{file_to_parse}.pdf") as file:
             for col_index, time_string in enumerate(row):
                 current_header = table[0][col_index]
 
-                # ADD THIS: Instantly skip empty times OR ghost columns
+                # Instantly skip empty times OR ghost columns
                 if time_string is None or current_header == "":
                     continue
 

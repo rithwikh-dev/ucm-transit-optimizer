@@ -90,7 +90,13 @@ with pdfplumber.open("transit_pdfs/mercedcitybus/m-3.pdf") as file:
 
             master_json[transit_category][transit_loop] = route_data
 
-            print(master_json)
+    import json
+
+    with open("merced_city_transit_schedule.json", "w") as json_file:
+
+        json.dump(master_json, json_file, indent=4)
+
+    print("Data successfully saved to merced_city_transit_schedule.json")
 
 
 
